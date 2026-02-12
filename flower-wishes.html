@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Swetha - Flower Garden 🌸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: #d946a6;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+            animation: slideDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #ec4899;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .flower-garden {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        /* Flowers */
+        .flower {
+            position: absolute;
+            animation: growFlower 2s ease-out forwards;
+            transform-origin: bottom center;
+        }
+
+        .stem {
+            width: 6px;
+            height: 120px;
+            background: linear-gradient(to bottom, #22c55e, #16a34a);
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: #22c55e;
+            border-radius: 0 50% 50% 0;
+            top: 60px;
+        }
+
+        .leaf.left {
+            left: -25px;
+            transform: rotate(-45deg);
+        }
+
+        .leaf.right {
+            right: -25px;
+            transform: rotate(45deg) scaleX(-1);
+        }
+
+        .petals {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            animation: petalSpin 20s linear infinite;
+        }
+
+        .petal {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border-radius: 50% 0;
+            top: 50%;
+            left: 50%;
+        }
+
+        .petal:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-25px); }
+        .petal:nth-child(2) { transform: translate(-50%, -50%) rotate(72deg) translateY(-25px); }
+        .petal:nth-child(3) { transform: translate(-50%, -50%) rotate(144deg) translateY(-25px); }
+        .petal:nth-child(4) { transform: translate(-50%, -50%) rotate(216deg) translateY(-25px); }
+        .petal:nth-child(5) { transform: translate(-50%, -50%) rotate(288deg) translateY(-25px); }
+
+        .center {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #fbbf24;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Different flower colors */
+        .flower1 .petal { background: #ec4899; }
+        .flower2 .petal { background: #f43f5e; }
+        .flower3 .petal { background: #a855f7; }
+        .flower4 .petal { background: #3b82f6; }
+        .flower5 .petal { background: #f97316; }
+        .flower6 .petal { background: #ec4899; }
+        .flower7 .petal { background: #8b5cf6; }
+
+        /* Flower positions */
+        .flower1 { left: 50px; bottom: 0; animation-delay: 0s; }
+        .flower2 { left: 150px; bottom: 0; animation-delay: 0.2s; }
+        .flower3 { left: 250px; bottom: 0; animation-delay: 0.4s; }
+        .flower4 { left: 350px; bottom: 0; animation-delay: 0.6s; }
+        .flower5 { left: 450px; bottom: 0; animation-delay: 0.8s; }
+        .flower6 { left: 100px; bottom: 0; animation-delay: 1s; }
+        .flower7 { left: 400px; bottom: 0; animation-delay: 1.2s; }
+
+        .message {
+            font-size: 1.5rem;
+            color: #d946a6;
+            margin-top: 40px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 3s ease-in;
+        }
+
+        /* Butterflies */
+        .butterfly {
+            position: absolute;
+            font-size: 40px;
+            animation: butterflyFly 8s ease-in-out infinite;
+        }
+
+        .butterfly1 { left: 10%; animation-delay: 0s; }
+        .butterfly2 { left: 80%; animation-delay: 2s; }
+        .butterfly3 { left: 40%; animation-delay: 4s; }
+
+        /* Floating petals */
+        .floating-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50% 0;
+            animation: petalFall 6s linear infinite;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes growFlower {
+            from {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            to {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes petalSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes butterflyFly {
+            0%, 100% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(50vh) translateX(100px) rotate(45deg);
+            }
+            50% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(50vh) translateX(-100px) rotate(-45deg);
+            }
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #d946a6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .flower-garden {
+                width: 350px;
+                height: 300px;
+                transform: scale(0.8);
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .message {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="birthday-wishes.html" class="back-button">← Back</a>
+
+    <div class="container">
+        <h1 class="title">🌸 Happy Birthday Swetha! 🌸</h1>
+        <p class="subtitle">A Garden of Love Just for You</p>
+        
+        <div class="flower-garden">
+            <div class="flower flower1">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower2">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower3">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower4">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower5">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower6">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+
+            <div class="flower flower7">
+                <div class="petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+        </div>
+        
+        <p class="message">
+            🌺 Like these beautiful flowers, may your life bloom with joy, love, and endless happiness! 🌺
+        </p>
+    </div>
+
+    <!-- Butterflies -->
+    <div class="butterfly butterfly1">🦋</div>
+    <div class="butterfly butterfly2">🦋</div>
+    <div class="butterfly butterfly3">🦋</div>
+
+    <script>
+        // Create falling petals
+        function createFallingPetals() {
+            const colors = ['#ec4899', '#f43f5e', '#a855f7', '#3b82f6', '#f97316'];
+            for (let i = 0; i < 20; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'floating-petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.animationDelay = Math.random() * 6 + 's';
+                petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                document.body.appendChild(petal);
+            }
+        }
+
+        createFallingPetals();
+    </script>
+</body>
+</html>
